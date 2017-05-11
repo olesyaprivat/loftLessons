@@ -11,10 +11,10 @@
  */
 function isAllTrue(array, fn) {
   try {
-    if (typeof(fn) !== "function") {
+    if (typeof fn !== "function") {
       throw new Error("fn is not a function");
     }
-    if (array.length === 0 || !array.length) {
+    if (typeof array !== 'object' || !array.length) {
       throw new Error("empty array");
     }
     for (var i = 0; i < array.length; i++){
@@ -39,10 +39,10 @@ function isAllTrue(array, fn) {
  */
 function isSomeTrue(array, fn) {
   try {
-    if (typeof(fn) !== "function") {
+    if (typeof fn !== "function") {
       throw new Error("fn is not a function");
     }
-    if (array.length === 0 || !array.length) {
+    if (typeof array !== 'object' || !array.length) {
       throw new Error("empty array");
     }
     for (var i = 0; i < array.length; i++) {
@@ -66,7 +66,7 @@ function isSomeTrue(array, fn) {
  */
 function returnBadArguments(fn, ...arg) {
   try {
-    if (typeof(fn) !== "function") {
+    if (typeof fn !== "function") {
       throw new Error("fn is not a function");
     }
     var a = [];
@@ -100,7 +100,7 @@ function returnBadArguments(fn, ...arg) {
  */
 function calculator(number = 0) {
   try {
-    if (typeof(number)!== "number") {
+    if (typeof number !== "number") {
          throw new Error("number is not a number");
     }
     var calc = {
