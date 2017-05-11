@@ -11,11 +11,12 @@
  */
 function isAllTrue(array, fn) {
 
-    if (typeof fn !== "function") {
-      throw new Error("fn is not a function");
-    }
+    
     if ( Object.prototype.toString.call(array) !== '[object Array]' || !array.length) {
       throw new Error("empty array");
+    }
+    if (typeof fn !== "function") {
+      throw new Error("fn is not a function");
     }
     for (var i = 0; i < array.length; i++){
         if (fn(array[i])===false){
@@ -36,11 +37,12 @@ function isAllTrue(array, fn) {
  */
 function isSomeTrue(array, fn) {
 
-    if (typeof fn !== "function") {
-      throw new Error("fn is not a function");
-    }
+    
     if (Object.prototype.toString.call(array) !== '[object Array]' || !array.length) {
       throw new Error("empty array");
+    }
+    if (typeof fn !== "function") {
+      throw new Error("fn is not a function");
     }
     for (var i = 0; i < array.length; i++) {
       if (fn(array[i]) === true) {
@@ -94,46 +96,47 @@ function returnBadArguments(fn, ...arg) {
  */
 function calculator(number = 0) {
 
-    if (typeof number !== "number") {
+    if (!Number.isFinite(number)) {
          throw new Error("number is not a number");
     }
     var calc = {
       num : number,
       sum: function(...arg) {
+          var array = [...arg];
           var sum = this.num;
-          for (var i = 0; i < arg.length; i++) {
-            sum += arg[i];
+          for (var i = 0; i < array.length; i++) {
+            sum += array[i];
           }
           return sum;
         
       },
       dif: function(...arg) {
-        
+          var array = [...arg];
           var dif = this.num;
-          for (var i = 0; i < arg.length; i++) {
-            dif = dif - arg[i];
+          for (var i = 0; i < array.length; i++) {
+            dif = dif - array[i];
           }
           return dif;
         
       },
       div: function(...arg) {
-        
+          var array = [...arg];
           var div = this.num;
-          for (var i = 0; i < arg.length; i++) {
-     
-            if (arg[i] === 0) {
-              throw new Error("division by 0");
+          for (var i = 0; i < array.length; i++) {
+          
+            if (array[i]===0 || array[i] === null) {
+               throw new Error("division by 0");
             }
-                div = div / arg[i];             
+                div = div / array[i];     
           }
           return div;
         
       },
       mul: function(...arg) {
-       
+          var array = [...arg];
           var mul = this.num;
-          for (var i = 0; i < arg.length; i++) {
-            mul = mul * arg[i];
+          for (var i = 0; i < array.length; i++) {
+            mul = mul * array[i];
           }
           return mul;
      
