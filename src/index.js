@@ -10,11 +10,11 @@
  «арпещено использовать встроенные методы дл€ работы с массивами
  */
 function isAllTrue(array, fn) {
-  try {
+
     if (typeof fn !== "function") {
       throw new Error("fn is not a function");
     }
-    if (typeof array !== 'object' || !array.length) {
+    if ( Object.prototype.toString.call(array) !== '[object Array]' || !array.length) {
       throw new Error("empty array");
     }
     for (var i = 0; i < array.length; i++){
@@ -23,9 +23,6 @@ function isAllTrue(array, fn) {
         }
     }
     return true;
-  } catch (e) {
-    console.log(e.message);
-  }
 }
 
 /*
@@ -38,11 +35,11 @@ function isAllTrue(array, fn) {
  «арпещено использовать встроенные методы дл€ работы с массивами
  */
 function isSomeTrue(array, fn) {
-  try {
+
     if (typeof fn !== "function") {
       throw new Error("fn is not a function");
     }
-    if (typeof array !== 'object' || !array.length) {
+    if (Object.prototype.toString.call(array) !== '[object Array]' || !array.length) {
       throw new Error("empty array");
     }
     for (var i = 0; i < array.length; i++) {
@@ -51,9 +48,8 @@ function isSomeTrue(array, fn) {
       }
     }
     return false;
-  } catch (e) {
-    console.log(e.message);
-  }
+
+
 }
 
 /*
@@ -65,7 +61,7 @@ function isSomeTrue(array, fn) {
  - fn не €вл€етс€ функцией (с текстом "fn is not a function")
  */
 function returnBadArguments(fn, ...arg) {
-  try {
+
     if (typeof fn !== "function") {
       throw new Error("fn is not a function");
     }
@@ -79,9 +75,7 @@ function returnBadArguments(fn, ...arg) {
        }
     }
     return a;
-  } catch (e) {
-    console.log(e.message);
-  }
+
 }
 
 /*
@@ -99,7 +93,7 @@ function returnBadArguments(fn, ...arg) {
  - какой-либо из аргументов div €вл€етс€ нулем (с текстом "division by 0")
  */
 function calculator(number = 0) {
-  try {
+
     if (typeof number !== "number") {
          throw new Error("number is not a number");
     }
@@ -126,10 +120,11 @@ function calculator(number = 0) {
         
           var div = this.num;
           for (var i = 0; i < arg.length; i++) {
+     
             if (arg[i] === 0) {
               throw new Error("division by 0");
             }
-            div = div / arg[i];
+                div = div / arg[i];             
           }
           return div;
         
@@ -146,9 +141,7 @@ function calculator(number = 0) {
     };
 
     return calc;
-  } catch (e) {
-    console.log(e.message);
-  }
+
 }
 
 export { isAllTrue, isSomeTrue, returnBadArguments, calculator };
