@@ -11,7 +11,7 @@
  */
 function isAllTrue(array, fn) {
   try {
-    if (typeof fn !== "function") {
+    if (typeof(fn) !== "function") {
       throw new Error("fn is not a function");
     }
     if (array.length === 0 || !array.length) {
@@ -39,7 +39,7 @@ function isAllTrue(array, fn) {
  */
 function isSomeTrue(array, fn) {
   try {
-    if (typeof fn !== "function") {
+    if (typeof(fn) !== "function") {
       throw new Error("fn is not a function");
     }
     if (array.length === 0 || !array.length) {
@@ -71,9 +71,12 @@ function returnBadArguments(fn, ...arg) {
     }
     var a = [];
     for (var i = 0; i < arg.length; i++) {
-      if (!fn(arg[i])) {
-        a.push(arg[i]);
-      }
+       try{
+          fn(arg[i]);
+       }
+       catch (e){
+          a.push(arg[i]);
+       }
     }
     return a;
   } catch (e) {
@@ -121,7 +124,7 @@ function calculator(number = 0) {
       },
       div: function(...arg) {
         
-           var div = this.num;
+          var div = this.num;
           for (var i = 0; i < arg.length; i++) {
             if (arg[i] === 0) {
               throw new Error("division by 0");
