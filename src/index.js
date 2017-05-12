@@ -149,6 +149,7 @@ var p = new Proxy(obj, {
    return p;
 }
 
+
 export {
    forEach,
            map,
