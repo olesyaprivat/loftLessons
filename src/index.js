@@ -100,10 +100,10 @@ function calculator(number = 0) {
          throw new Error("number is not a number");
     }
     var calc = {
-      num : number,
+
       sum: function(...arg) {
           var array = [...arg];
-          var sum = this.num;
+          var sum = number;
           for (var i = 0; i < array.length; i++) {
             sum += array[i];
           }
@@ -112,7 +112,7 @@ function calculator(number = 0) {
       },
       dif: function(...arg) {
           var array = [...arg];
-          var dif = this.num;
+          var dif =  number;
           for (var i = 0; i < array.length; i++) {
             dif = dif - array[i];
           }
@@ -121,7 +121,7 @@ function calculator(number = 0) {
       },
       div: function(...arg) {
           var array = [...arg];
-          var div = this.num;
+          var div =  number;
           for (var i = 0; i < array.length; i++) {
           
             if (array[i]===0 || array[i] === null) {
@@ -134,7 +134,7 @@ function calculator(number = 0) {
       },
       mul: function(...arg) {
           var array = [...arg];
-          var mul = this.num;
+          var mul =  number;
           for (var i = 0; i < array.length; i++) {
             mul = mul * array[i];
           }
