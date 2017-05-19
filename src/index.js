@@ -209,11 +209,11 @@ function textStat (elem, stat){
 	var arr = elem.childNodes;
 	for (var i=0; i<arr.length; i++){
 		if(arr[i].nodeType == 3){
-			if(stat.hasOwnProperty('text')){
-				stat.text = ++stat.text;
+			if(stat.hasOwnProperty('texts')){
+				stat.texts = ++stat.texts;
 			}
 			else{
-				stat.text = 1;
+				stat.texts = 1;
 			}
 		}
 		else{
@@ -221,7 +221,7 @@ function textStat (elem, stat){
 		}
 	}
 	
-	return stat.text;
+	return stat.texts;
 }
 
 
@@ -230,7 +230,7 @@ function textStat (elem, stat){
  * Функция должна отслеживать добавление и удаление элементов внутри элемента where
  * Как только в where добавляются или удаляются элемента,
  * необходимо сообщать об этом при помощи вызова функции fn со специальным аргументом
- * В качестве аргумента должен быть передан объек с двумя свойствами:
+ * В качестве аргумента должен быть передан объект с двумя свойствами:
  * - type: типа события (insert или remove)
  * - nodes: массив из удаленных или добавленных элементов (а зависимости от события)
  * Отслеживание должно работать вне зависимости от глубины создаваемых/удаляемых элементов
@@ -257,7 +257,38 @@ function textStat (elem, stat){
  * }
  */
 function observeChildNodes(where, fn) {
+
+var observer = new MutationObserver(function(mutations) {
+  mutations.forEach(function(mutation){ 
+  var arr = [];
+  var info = {};
+	  if (mutation.addedNodes.length > 0){
+			for (var i = 0; i < mutation.addedNodes.length; i++) {
+				arr.push(mutation.addedNodes[i]);
+			}
+			info.nodes = arr;
+			info.type = "insert";
+		}
+	  if (mutation.removedNodes.length > 0 ){
+		for (var i = 0; i < mutation.removedNodes.length; i++){
+			arr.push(mutation.removedNodes[i]);
+		}
+		info.nodes = arr;
+		info.type = "remove";
+	  }
+	
+	  fn(info);
+  });    
+  
+});
+ 
+var config = { childList: true, subtree: true };
+
+observer.observe(where, config);
 }
+
+
+
 
 export {
     createDivWithText,
