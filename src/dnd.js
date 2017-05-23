@@ -23,14 +23,50 @@ let homeworkContainer = document.querySelector('#homework-container');
  * @return {Element}
  */
 function createDiv() {
+	var div = document.createElement("div");
+	var w = window.innerWidth;
+	
+	div.classList.add ("draggable-div");
+	div.setAttribute("style", "background-color:"+ getRandomColor() + "height:"+ getRandom() + "width:"+ getRandom()  + "top:" + getRandom() + "left:" + getRandom());
+	return div;
+}
+function getRandom() {
+	var randomNumber = Math.ceil(Math.random() * 1000);
+	return randomNumber + "px;";
 }
 
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color + ";";
+}
 /**
  * Функция должна добавлять обработчики событий для перетаскивания элемента при помощи drag and drop
  *
  * @param {Element} target
  */
 function addListeners(target) {
+	target.addEventListener("mousedown", function(e) { 
+	target.style.position = "absolute";
+	target.style.zIndex = 1000;
+	moveFn(e);
+	
+  function moveFn(e) {
+    target.style.left = e.pageX - target.offsetWidth / 2 + 'px';
+    target.style.top = e.pageY - target.offsetHeight / 2 + 'px';
+  }
+	var move = function(e) {
+    moveFn(e);
+  }
+	document.addEventListener("mousemove", move);
+	target.addEventListener("mouseup",  function() {
+    document.removeEventListener("mousemove", move);
+  })
+
+})
 }
 
 let addDivButton = homeworkContainer.querySelector('#addDiv');
