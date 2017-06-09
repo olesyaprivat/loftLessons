@@ -1,76 +1,36 @@
-/* ДЗ 1 - Функции */
+new Promise (function(resolve){
+		window.onload = resolve
+})
+.then(function(){
+	return new Promise (function(resolve, reject){
+		VK.init({
+			apiId : 6067884
+		})
+		VK.Auth.login(function(response){
+			if (response.session){
+				
+				resolve(response);
+			}
+			else {
+				reject (new Error ('Не удалось авторизоваться'));
+			}
+		}, 2)
+	})
+})
+.then(function(){
+	return new Promise (function(resolve, reject){
+		console.log(VK.api);
+		VK.api('friends.get', {v : '5.64', fields : 'photo_100'}, function(response){
 
-/*
- Задание 1:
+			if (response.error){
+				reject (new Error (response.error.error_msg));
 
- Функция должна принимать один аргумент и возвращать его
- */
-function returnFirstArgument(arg) {
-    return arg;
-}
+			}
+			else{
 
-/*
- Задание 2:
+			resolve(response);
 
- Функция должна принимать два аргумента и возвращать сумму переданных значений
- Значение по умолчанию второго аргумента должно быть 100
- */
-function defaultParameterValue(a, b = 100) {
-    return a + b;
-}
-
-/*
- Задание 3:
-
- Функция должна возвращать все переданные в нее аргументы в виде массива
- Количество переданных аргументов заранее неизвестно
- */
-function returnArgumentsArray() {
-    var arg = [];
-    for (var i = 0; i < arguments.length; i++) {
-        arg[i] = arguments[i];
-    }
-    return arg;
-}
-
-/*
- Задание 4:
-
- Функция должна принимать другую функцию и возвращать результат вызова переданной функции
- */
-function returnFnResult(fn) {
-    return fn();
-}
-
-
-/*
- Задание 5:
-
- Функция должна принимать число (значение по умолчанию - 0) и возвращать функцию (F)
- При вызове F, переданное число должно быть увеличено на единицу и возвращено из F
- */
-function returnCounter(number) {
-    var a = number || 0;
-    return function F() {
-        return a + 1;
-    };
-}
-
-/*
- Задание 6 *:
-
- Функция должна принимать другую функцию (F) и некоторое количество дополнительных аргументов
- Функция должна привязать переданные аргументы к функции F и вернуть получившуюся функцию
- */
-function bindFunction (fn, ...arg) {
-    return  fn.bind(null, ...arg);
-}
-
-export {
-    returnFirstArgument,
-    defaultParameterValue,
-    returnArgumentsArray,
-    returnFnResult,
-    returnCounter,
-    bindFunction
-}
+			}
+		})
+	})
+})
