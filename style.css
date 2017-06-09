@@ -1,0 +1,176 @@
+body {
+	background-color: #a0a0a0;
+	
+}
+body  *{
+	font-family:"Open Sans";
+	box-sizing:border-box;
+}
+#homework-container{
+	width: 746px;
+	height:590px;
+	margin: 0 auto;
+	border-radius:15px;
+	background-color:#fff;
+}
+.head{
+	color:#fff;
+	font-size: 18px;
+	padding-left:18px;
+	line-height:52px;
+	text-shadow:1px 1px 0 rgba(0, 0, 0, 0.1);
+	border-radius:14px 14px 0 0;
+	background-color:#f6856e;
+}
+.filter{
+	background-color:#f1f1f1;
+	height:53px;
+}
+.row{
+	width:100%;
+	
+}
+.col{
+	width:50%;
+	float:left;
+	padding:15px;
+	
+}
+.row:before, 
+.row:after{
+	display:block;
+	content:"";
+	line-height:0;
+	height:0;
+	width:100%;
+	clear:both;
+}
+h2{
+	font-size:16px;
+	margin:0;
+	border-bottom:1px solid #f4f4f4;
+	padding-bottom:5px;
+}
+.friends-list{
+	height:390px;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+	overflow-y:auto;
+}
+.friends-list li{
+	list-style-type:none;
+	margin:0;
+	border-bottom:1px solid #f4f4f4;
+	height:75px;
+	width:326px;
+	padding:10px 32px 10px 8px; 
+	position:relative;
+}
+.friends-list li button{
+	position:absolute;
+	top:50%;
+	right:5px;
+	display:block;
+	border:none;
+	background:none;
+	width:20px;
+	height:20px;
+	margin-top:-10px;
+	cursor:pointer;
+	outline:none;
+}
+#friends button:after,
+#friends button:before,
+#friends-filter button:after,
+#friends-filter button:before
+{
+	display:inline-block;
+	content:"";
+	background-color:#cacaca;
+	border-radius:5px;
+	position:absolute;
+}
+#friends-filter button:after{
+	width:6px;
+	height:20px;
+	transform: rotate(45deg);
+	left:5px;
+	top:0;
+}
+#friends-filter button:before{
+	width:6px;
+	height:20px;
+	transform: rotate(-45deg);
+	left:5px;
+	top:0;
+}
+#friends button:after{
+	top:0;
+	left:50%;
+	margin-left:-3px;
+	width:6px;
+	height:20px;
+}
+#friends button:before{
+	top:50%;
+	left:0;
+	margin-top:-3px;
+	width:20px;
+	height:6px;
+}
+.friends-list li:hover{
+	background-color:#f1f1f1;
+}
+.friends-list li span{
+	display:inline-block;
+	vertical-align:middle;
+}
+.photo img{
+	width:55px;
+	height:55px;
+	border-radius:50%;
+}
+.name{
+	padding-left:7px;
+}
+.footer{
+	height:52px;
+	background-color:#f4f4f4;
+	border-radius:0 0 14px 14px;
+	text-align:right;
+	padding-right:15px;
+}
+#save-button{
+	background-image:none;
+	background-color:#f5856d;
+	color:#fff;
+	border:none;
+	font-size:16px;
+	line-height:35px;
+	border-radius:10px;
+	padding:0px 20px;
+	text-align:center;
+	position:relative;
+	top:7px;
+	cursor:pointer;
+}
+.search{
+	width:345px;
+	border:none;
+	background-color:#fff;
+	line-height:31px;
+	padding: 0 10px;
+	border-radius:15px;
+	display:inline-block;
+	
+}
+.filter .col{
+	padding:10px 15px;
+}
+.display-none{
+	display:none;
+}
+.display-block{
+	display:block;
+}

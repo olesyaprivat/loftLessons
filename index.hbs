@@ -3,45 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <title>{{htmlWebpackPlugin.options.title}}</title>
-  <style>
-    body
-    {
-      font-family: Helvetica;
-      font-size: 16px;
-    }
 
-    #friends
-    {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .friend
-    {
-      width: 170px;
-    }
-
-    .friend img
-    {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-    }
-
-    .friend .name
-    {
-      font-weight: bold;
-    }
-  </style>
   <script src="http://vk.com/js/api/openapi.js" type="text/javascript"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-<div class="container">
-  <h1 id="headerInfo"></h1>
-11111111
-  <div id="friends"></div>
-</div>
+	<div id="homework-container">
+		<div id="content-inner">
+		<div class="head">Выберите друзей</div>
+		<div class="row filter">
+			<div class="col">
+				<input type="text" class="search" id="search-list" placeholder="Начните вводить имя друга"/>
+			</div>
+			<div class="col">
+				<input type="text" class="search" id="search-filter" placeholder="Начните вводить имя друга"/>
+			</div>
+		</div>
+			<div class="row" id ="container-list">
+				<div class="col">
+					<h2>Ваши друзья</h2>
+					<ul id="friends" class="friends-list"> 
+			
+					</ul>
+				</div>
+				<div class="col">
+				<h2>Друзья в списке</h2>
+				<ul id="friends-filter" class="friends-list"> 
+		
+				</ul>
+				</div>
+			</div>
+			</div>
+		<div class="footer">
+			<button id="save-button">Сохранить</button>
+		</div>
+	
+	</div>
 </body>
 </html>
