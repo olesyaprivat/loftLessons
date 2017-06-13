@@ -5,6 +5,7 @@ body {
 body  *{
 	font-family:"Open Sans";
 	box-sizing:border-box;
+	user-select: none;
 }
 #homework-container{
 	width: 746px;
