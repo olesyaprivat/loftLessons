@@ -143,11 +143,14 @@ var listeners = {
 				if (e.target.nodeName == "SPAN"){
 					target = e.target.parentElement;
 				}
+				if (e.target.nodeName == "IMG"){
+					target = e.target.parentElement.parentElement;
+				}
 				else{
 					target = e.target;
 				}
 				
-				console.log(target);
+		
 				if(target.parentElement.getAttribute('id') == 'friends'){
 					
 					target.style.position = "absolute";
