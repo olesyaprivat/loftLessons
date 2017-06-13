@@ -59,16 +59,16 @@ function renderFriendsList (list){
 	
 	for(var i=0; i<list.length; i++){
 		var li = document.createElement('li');
-		li.setAttribute('id',list[i].name)
+		li.setAttribute('id',list[i].last_name)
 		li.classList.add("friend-item");
 		var spanImg = document.createElement('span');
 		spanImg.classList.add("photo");
 		var img = document.createElement('img');
-		img.setAttribute('src', list[i].photo);
+		img.setAttribute('src', list[i].photo_200);
 		spanImg.appendChild(img);
 		var spanName = document.createElement('span');
 		spanName.classList.add("name");
-		spanName.innerText = list[i].name;
+		spanName.innerText = list[i].first_name + list[i].last_name;
 		li.appendChild (spanImg);
 		li.appendChild (spanName);
 		var button = document.createElement('button');
@@ -139,7 +139,15 @@ var listeners = {
 				
 			}
 			else{
-				var target = e.target;
+				var target;
+				if (e.target.nodeName == "SPAN"){
+					target = e.target.parentElement;
+				}
+				else{
+					target = e.target;
+				}
+				
+				console.log(target);
 				if(target.parentElement.getAttribute('id') == 'friends'){
 					
 					target.style.position = "absolute";
@@ -178,56 +186,15 @@ var listeners = {
 
 
 
-var listFriend = [
-	{
-		name: "Friend1",
-		photo: "photo.jpg"
-	},
-	{
-		name: "Friend2",
-		photo: "photo.jpg"
-	},
-	{
-		name: "Friend3",
-		photo: "photo.jpg"
-	},
-	{
-		name: "Friend4",
-		photo: "photo.jpg"
-	},
-	{
-		name: "Friend5",
-		photo: "photo.jpg"
-	},
-	{
-		name: "Friend6",
-		photo: "photo.jpg"
-	},
-	{
-		name: "Friend7",
-		photo: "photo.jpg"
-	},
-	{
-		name: "Friend8",
-		photo: "photo.jpg"
-	},
-	{
-		name: "Friend9",
-		photo: "photo.jpg"
-	},
-	{
-		name: "Friend10",
-		photo: "photo.jpg"
-	}
-	
-]
-
 new Promise(resolve => window.onload = resolve)
     .then(() => {
-		
-		
 		vkInit();
+	})
+
+    .then(() => vkApi('friends.get', {fields: 'photo_200'}))
+    .then(response => {
 		
+		var listFriend = response.items;
 		var container = document.getElementById('content-inner');
 		var saveButton = document.getElementById('save-button');
 		var filterList = document.getElementById('friends-filter');
@@ -269,9 +236,6 @@ new Promise(resolve => window.onload = resolve)
 		});
 		
 		
-	})
-
-    .then(() => vkApi('friends.get', {fields: 'photo_200'}))
-    .then(response => {
+		
 	})
     .catch(e => alert('Ошибка: ' + e.message));

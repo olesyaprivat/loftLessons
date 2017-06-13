@@ -5,6 +5,7 @@ body {
 body  *{
 	font-family:"Open Sans";
 	box-sizing:border-box;
+	user-select: none;
 }
 #homework-container{
 	width: 746px;
@@ -58,6 +59,9 @@ h2{
 	overflow:hidden;
 	overflow-y:auto;
 }
+#friends li{
+	cursor:pointer;
+}
 .friends-list li{
 	list-style-type:none;
 	margin:0;
@@ -66,6 +70,7 @@ h2{
 	width:326px;
 	padding:10px 32px 10px 8px; 
 	position:relative;
+	
 }
 .friends-list li button{
 	position:absolute;
