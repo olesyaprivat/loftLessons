@@ -22,7 +22,7 @@
 			</div>
 		</div>
 			<div class="row" id ="container-list">
-				<div class="col">
+				<div class="col" >
 					<h2>Ваши друзья</h2>
 					<ul id="friends" class="friends-list"> 
 			
@@ -30,7 +30,7 @@
 				</div>
 				<div class="col">
 				<h2>Друзья в списке</h2>
-				<ul id="friends-filter" class="friends-list"> 
+				<ul id="friends-filter" class="friends-list"  ondrop="drop_handler(event);" ondragover="dragover_handler(event);"> 
 		
 				</ul>
 				</div>
@@ -41,5 +41,34 @@
 		</div>
 	
 	</div>
+	<script type="text/javascript">
+		function clearFilter (){
+			var liList = document.querySelectorAll('li');
+			var inputFriends = document.getElementById('search-list');
+			inputFriends.value="";
+			var inputFriendsFilter = document.getElementById('search-filter');
+			inputFriendsFilter.value="";
+			for (var i=0; i<liList.length; i++){
+				liList[i].classList.remove('display-none');
+			}
+		}
+		function dragstart_handler(ev) {
+			clearFilter ();
+			ev.dataTransfer.setData("text", ev.target.id);
+			ev.effectAllowed = "copyMove";
+		}
+		function dragover_handler(ev) {
+			ev.preventDefault();
+		}
+		function drop_handler(ev) {
+			ev.preventDefault();
+			var id = ev.dataTransfer.getData("text");
+			ev.target.appendChild(document.getElementById(id));
+			 
+		}
+		function dragend_handler(ev) {
+		  	ev.dataTransfer.clearData();
+		}
+	</script>
 </body>
 </html>
