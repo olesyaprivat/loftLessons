@@ -95,7 +95,7 @@ function buttonsListener(){
 				var liCurrent =  e.target.parentElement;
 				var list = liCurrent.parentElement;
 				var listId = list.getAttribute('id');
-				
+				clearFilter ();
 				if(listId == 'friends'){
 					addItemList(filterList, liCurrent);
 					
@@ -174,17 +174,17 @@ new Promise(resolve => window.onload = resolve)
 		var listFriend = response.items;
 		var container = document.getElementById('content-inner');
 		
-		if (localStorage.getItem('content')){
+		/*if (localStorage.getItem('content')){
 			var contentInner = localStorage.getItem('content');
 			var contentText = JSON.parse(contentInner);
 			container.innerHTML = contentText;
 			renderFilter();
 			buttonsListener();
 		}
-		else{
+		else{*/
 			renderFriendsList(listFriend);
 			renderFilter();
 			buttonsListener()
-		}
+		//}
 	})
     .catch(e => alert('Ошибка: ' + e.message));

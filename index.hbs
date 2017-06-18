@@ -24,13 +24,13 @@
 			<div class="row" id ="container-list">
 				<div class="col" >
 					<h2>Ваши друзья</h2>
-					<ul id="friends" class="friends-list"> 
+					<ul id="friends" class="friends-list" ondrop="drop_handler(event, 'friends');" ondragover="dragover_handler(event);"> 
 			
 					</ul>
 				</div>
 				<div class="col">
 				<h2>Друзья в списке</h2>
-				<ul id="friends-filter" class="friends-list"  ondrop="drop_handler(event);" ondragover="dragover_handler(event);"> 
+				<ul id="friends-filter" class="friends-list"  ondrop="drop_handler(event, 'friends-filter');" ondragover="dragover_handler(event);"> 
 		
 				</ul>
 				</div>
@@ -60,10 +60,12 @@
 		function dragover_handler(ev) {
 			ev.preventDefault();
 		}
-		function drop_handler(ev) {
+		function drop_handler(ev, elem) {
 			ev.preventDefault();
 			var id = ev.dataTransfer.getData("text");
-			ev.target.appendChild(document.getElementById(id));
+			var cont = document.getElementById(elem);
+			cont.appendChild(document.getElementById(id));
+
 			 
 		}
 		function dragend_handler(ev) {
